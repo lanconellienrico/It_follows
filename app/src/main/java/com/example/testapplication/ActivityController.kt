@@ -13,7 +13,7 @@ import java.util.concurrent.TimeUnit
 
 /** [MCV pattern ]
  * The ActivityController is in charge of every action that can be performed
- * from the MainActivity Interface multiple times or is not strictly bound
+ * from the MainActivity Interface multiple times and is not strictly bound
  * to the activity creation or to its visual style, such as:
  * - start/stop an activity,
  * - save data on shared Preferences (using Model),

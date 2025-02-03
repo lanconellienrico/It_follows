@@ -161,7 +161,7 @@ class SetGeoActivity: AppCompatActivity() {
             ).toString()
         }
         // if buildGeofence() has generated text, display it in the Toast
-        if(toastMessage != "")
+        if(toastMessage != "" && toastMessage != "null")
             Toast.makeText(this, toastMessage, Toast.LENGTH_LONG).show()
     }
 

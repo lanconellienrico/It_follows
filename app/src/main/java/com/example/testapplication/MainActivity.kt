@@ -2,10 +2,7 @@ package com.example.testapplication
 
 import android.Manifest
 import android.annotation.SuppressLint
-import android.app.AlarmManager
 import android.app.AlertDialog
-import android.app.PendingIntent
-import android.content.Context
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.hardware.Sensor
@@ -28,10 +25,6 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.room.Room.databaseBuilder
-import com.google.android.gms.location.GeofencingClient
-import com.google.android.gms.location.LocationServices
-import java.util.Calendar
-import java.util.TimeZone
 
 /**
  * MainActivity of the App, handles onCreate-related events, one-time works and graphic elements.
@@ -61,7 +54,6 @@ class MainActivity:AppCompatActivity(), SensorEventListener {
     private lateinit var setGeofenceButton: Button
     private lateinit var viewGeofenceButton: Button
     private lateinit var addStepsButton: Button
-    private lateinit var geofencingClient: GeofencingClient
     private lateinit var activityTypeSpinner: Spinner
     private lateinit var stepCountTextView: TextView
 

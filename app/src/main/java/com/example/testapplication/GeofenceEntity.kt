@@ -33,6 +33,7 @@ data class GeofenceEntity(
 
     // print geofence name and crossing
     fun toPrint():String{
+
         return ("$id   :   $crossCount")
     }
 }
