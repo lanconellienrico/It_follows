@@ -1,0 +1,162 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#000000"
+    android:backgroundTint="#000000">
+
+
+    <View
+        android:id="@+id/view2"
+        android:layout_width="375dp"
+        android:layout_height="80dp"
+        android:layout_marginStart="16dp"
+        android:background="@drawable/rounded_view"
+        android:backgroundTint="#2F2F2F"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/eyes2" />
+
+    <Spinner
+        android:id="@+id/spinner_history"
+        android:layout_width="102dp"
+        android:layout_height="28dp"
+        android:layout_marginStart="19dp"
+        android:layout_marginTop="43dp"
+        android:background="@drawable/rounded_view"
+        android:backgroundTint="@color/light_font"
+        android:entries="@array/activities"
+        android:padding="2.5dp"
+        app:layout_constraintStart_toEndOf="@+id/activity_filter"
+        app:layout_constraintTop_toBottomOf="@+id/eyes2"
+        tools:ignore="TouchTargetSizeCheck,TextSizeCheck" />
+
+    <ImageView
+        android:id="@+id/eyes2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="96dp"
+        android:layout_marginEnd="10dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/eyes"
+        tools:ignore="ContentDescription" />
+
+    <Button
+        android:id="@+id/clear_button"
+        style="@style/button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="159dp"
+        android:layout_marginEnd="162dp"
+        android:layout_marginBottom="16dp"
+        android:insetTop="0dp"
+        android:insetBottom="0dp"
+        android:text="Clear"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:ignore="HardcodedText" />
+
+    <CheckBox
+        android:id="@+id/activity_filter"
+        android:layout_width="148dp"
+        android:layout_height="30dp"
+        android:layout_marginStart="30dp"
+        android:layout_marginTop="42dp"
+        android:buttonTint="@color/purple_200"
+        android:checked="false"
+        android:text="Filter by activity:"
+        android:textColor="@color/light_font"
+        android:textColorLink="@color/purple_200"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/eyes2"
+        tools:ignore="HardcodedText,TouchTargetSizeCheck" />
+
+    <CheckBox
+        android:id="@+id/calender_check_box"
+        android:layout_width="125dp"
+        android:layout_height="30dp"
+        android:layout_marginStart="30dp"
+        android:layout_marginTop="8dp"
+        android:buttonTint="@color/purple_200"
+        android:text="Filter By Date: "
+        android:textColor="@color/light_font"
+        android:textColorLink="@color/purple_200"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/eyes2"
+        tools:ignore="HardcodedText,TextSizeCheck,TouchTargetSizeCheck" />
+
+    <ScrollView
+        android:id="@+id/scrollView2"
+        android:layout_width="408dp"
+        android:layout_height="360dp"
+        android:layout_marginStart="1dp"
+        android:layout_marginTop="6dp"
+        android:layout_marginEnd="2dp"
+        android:layout_marginBottom="6dp"
+        android:fillViewport="true"
+        app:layout_constraintBottom_toTopOf="@+id/clear_button"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/view2"
+        tools:ignore="SpeakableTextPresentCheck">
+
+        <LinearLayout
+            android:id="@+id/history_container"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:paddingLeft="15dp"
+            android:paddingTop="15dp"
+            android:paddingRight="15dp">
+
+            <TextView
+                android:id="@+id/sample_text"
+                style="@style/historyActivity"
+                android:text=""
+                android:visibility="gone"
+                tools:layout_editor_absoluteX="16dp"
+                tools:layout_editor_absoluteY="16dp" />
+
+        </LinearLayout>
+    </ScrollView>
+
+    <Button
+        android:id="@+id/set_date_button"
+        style="@style/button"
+        android:layout_width="wrap_content"
+        android:layout_height="28dp"
+        android:layout_marginStart="11dp"
+        android:layout_marginTop="7dp"
+        android:background="@drawable/rounded_view"
+        android:insetTop="0dp"
+        android:insetBottom="0dp"
+        android:paddingLeft="8dp"
+        android:paddingRight="8dp"
+        android:text="set date"
+        android:textAllCaps="false"
+        android:textSize="14sp"
+        app:layout_constraintStart_toEndOf="@+id/date_to_filter_text"
+        app:layout_constraintTop_toBottomOf="@+id/eyes2"
+        tools:ignore="HardcodedText,TouchTargetSizeCheck" />
+
+    <TextView
+        android:id="@+id/date_to_filter_text"
+        style="@style/PlainText"
+        android:layout_width="121dp"
+        android:layout_height="25dp"
+        android:layout_marginStart="5dp"
+        android:layout_marginTop="10dp"
+        android:gravity="center|center_horizontal|center_vertical"
+        android:text="25 Gennaio 2025"
+        android:textSize="15sp"
+        app:layout_constraintStart_toEndOf="@+id/calender_check_box"
+        app:layout_constraintTop_toBottomOf="@+id/eyes2"
+        tools:ignore="HardcodedText,TextSizeCheck" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

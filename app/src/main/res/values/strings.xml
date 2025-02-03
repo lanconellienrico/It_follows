@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">It Follows</string>
+        <string-array name="activities">
+            <item>walking</item>
+            <item>sitting</item>
+            <item>driving</item>
+            <item>swimming</item>
+            <item>running</item>
+            <item>riding</item>
+        </string-array>
+</resources>

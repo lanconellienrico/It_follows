@@ -1,0 +1,293 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/black">
+
+    <ImageView
+        android:id="@+id/eyes4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="96dp"
+        android:layout_marginEnd="10dp"
+        android:background="#00FBFBFB"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/eyes"
+        tools:ignore="ContentDescription" />
+
+    <Switch
+        android:id="@+id/charts_switch"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="182dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="183dp"
+        android:textColorLink="@color/purple_200"
+        android:thumbTint="@color/light_font"
+        android:trackTint="#3C0068"
+        android:trackTintMode="add"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/eyes4"
+        tools:ignore="TouchTargetSizeCheck,UseSwitchCompatOrMaterialXml" />
+
+    <View
+        android:id="@+id/pie_background"
+        android:layout_width="346dp"
+        android:layout_height="275dp"
+        android:layout_marginStart="13dp"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/rounded_view"
+        android:backgroundTint="#0D0D0D"
+        app:layout_constraintStart_toEndOf="@+id/anchor"
+        app:layout_constraintTop_toBottomOf="@+id/pie_description_text" />
+
+    <TextView
+        android:id="@+id/pie_text"
+        style="@style/TextOnBlack"
+        android:layout_width="wrap_content"
+        android:layout_height="28dp"
+        android:layout_marginTop="19dp"
+        android:layout_marginEnd="27dp"
+        android:gravity="center|center_horizontal|center_vertical"
+        android:text="Pie Chart"
+        app:layout_constraintEnd_toStartOf="@+id/charts_switch"
+        app:layout_constraintTop_toBottomOf="@+id/eyes4"
+        tools:ignore="HardcodedText,TextSizeCheck" />
+
+    <TextView
+        android:id="@+id/histogram_text"
+        style="@style/TextOnBlack"
+        android:layout_width="wrap_content"
+        android:layout_height="28dp"
+        android:layout_marginStart="27dp"
+        android:layout_marginTop="20dp"
+        android:gravity="center|center_horizontal|center_vertical"
+        android:text="Histogram"
+        app:layout_constraintStart_toEndOf="@+id/charts_switch"
+        app:layout_constraintTop_toBottomOf="@+id/eyes4"
+        tools:ignore="HardcodedText,TextSizeCheck" />
+
+    <TextView
+        android:id="@+id/pie_description_text"
+        style="@style/DescriptionText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="1dp"
+        android:layout_marginEnd="12dp"
+        android:text="last 30 days activities"
+        app:layout_constraintEnd_toStartOf="@+id/charts_switch"
+        app:layout_constraintTop_toBottomOf="@+id/pie_text"
+        tools:ignore="HardcodedText" />
+
+    <TextView
+        android:id="@+id/hist_description_text"
+        style="@style/DescriptionText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="27dp"
+        android:text="last 30 days steps"
+        android:textColor="@color/light_font"
+        app:layout_constraintStart_toEndOf="@+id/charts_switch"
+        app:layout_constraintTop_toBottomOf="@+id/histogram_text"
+        android:visibility="invisible"
+        tools:ignore="HardcodedText" />
+
+
+
+    <!-- pie chart -->
+
+    <org.eazegraph.lib.charts.PieChart
+        android:id="@+id/pie"
+        android:layout_width="200dp"
+        android:layout_height="200dp"
+        android:layout_marginStart="27dp"
+        android:layout_marginTop="56dp"
+        android:padding="6dp"
+        android:visibility="visible"
+        app:layout_constraintStart_toEndOf="@+id/anchor"
+        app:layout_constraintTop_toBottomOf="@+id/pie_description_text" />
+
+    <View
+        android:id="@+id/color2"
+        android:layout_width="15dp"
+        android:layout_height="15dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="15dp"
+        android:background="@color/running"
+        app:layout_constraintStart_toEndOf="@+id/pie"
+        app:layout_constraintTop_toBottomOf="@+id/color1" />
+
+    <View
+        android:id="@+id/color1"
+        android:layout_width="15dp"
+        android:layout_height="15dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="80dp"
+        android:background="@color/walking"
+        app:layout_constraintStart_toEndOf="@+id/pie"
+        app:layout_constraintTop_toBottomOf="@+id/hist_description_text" />
+
+    <TextView
+        android:id="@+id/description2"
+        style="@style/DescriptionText"
+        android:layout_marginStart="15dp"
+        android:layout_marginTop="13dp"
+        android:text="Running"
+        app:layout_constraintStart_toEndOf="@+id/color2"
+        app:layout_constraintTop_toBottomOf="@+id/description1"
+        tools:ignore="HardcodedText" />
+
+    <TextView
+        android:id="@+id/description6"
+        style="@style/DescriptionText"
+        android:layout_marginStart="15dp"
+        android:layout_marginTop="13dp"
+        android:text="Swimming"
+        app:layout_constraintStart_toEndOf="@+id/color6"
+        app:layout_constraintTop_toBottomOf="@+id/description5"
+        tools:ignore="HardcodedText" />
+
+    <View
+        android:id="@+id/color5"
+        android:layout_width="15dp"
+        android:layout_height="15dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="15dp"
+        android:background="@color/purple_200"
+        app:layout_constraintStart_toEndOf="@+id/pie"
+        app:layout_constraintTop_toBottomOf="@+id/color4" />
+
+    <TextView
+        android:id="@+id/description5"
+        style="@style/DescriptionText"
+        android:layout_marginStart="15dp"
+        android:layout_marginTop="13dp"
+        android:text="Sitting"
+        app:layout_constraintStart_toEndOf="@+id/color5"
+        app:layout_constraintTop_toBottomOf="@+id/description4"
+        tools:ignore="HardcodedText" />
+
+    <View
+        android:id="@+id/color6"
+        android:layout_width="15dp"
+        android:layout_height="15dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="15dp"
+        android:background="@color/indigo"
+        app:layout_constraintStart_toEndOf="@+id/pie"
+        app:layout_constraintTop_toBottomOf="@+id/color5" />
+
+    <TextView
+        android:id="@+id/description1"
+        style="@style/DescriptionText"
+        android:layout_marginStart="15dp"
+        android:layout_marginTop="80dp"
+        android:text="Walking"
+        app:layout_constraintStart_toEndOf="@+id/color1"
+        app:layout_constraintTop_toBottomOf="@+id/hist_description_text"
+        tools:ignore="HardcodedText" />
+
+    <View
+        android:id="@+id/color4"
+        android:layout_width="15dp"
+        android:layout_height="15dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="15dp"
+        android:background="@color/deep_pink"
+        app:layout_constraintStart_toEndOf="@+id/pie"
+        app:layout_constraintTop_toBottomOf="@+id/color3" />
+
+    <TextView
+        android:id="@+id/description4"
+        style="@style/DescriptionText"
+        android:layout_marginStart="15dp"
+        android:layout_marginTop="13dp"
+        android:text="Riding"
+        app:layout_constraintStart_toEndOf="@+id/color4"
+        app:layout_constraintTop_toBottomOf="@+id/description3"
+        tools:ignore="HardcodedText" />
+
+    <View
+        android:id="@+id/color3"
+        android:layout_width="15dp"
+        android:layout_height="15dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="15dp"
+        android:background="@color/dark_orchid"
+        app:layout_constraintStart_toEndOf="@+id/pie"
+        app:layout_constraintTop_toBottomOf="@+id/color2" />
+
+    <TextView
+        android:id="@+id/description3"
+        style="@style/DescriptionText"
+        android:layout_marginStart="15dp"
+        android:layout_marginTop="13dp"
+        android:text="Driving"
+        app:layout_constraintStart_toEndOf="@+id/color3"
+        app:layout_constraintTop_toBottomOf="@+id/description2"
+        tools:ignore="HardcodedText" />
+
+    <!-- bars chart -->
+
+    <com.github.mikephil.charting.charts.BarChart
+        android:id="@+id/bar_chart"
+        android:layout_width="374dp"
+        android:layout_height="310dp"
+        android:layout_marginTop="75dp"
+        android:background="@drawable/rounded_view"
+        android:backgroundTint="#0D0D0D"
+        android:visibility="gone"
+        app:layout_constraintStart_toEndOf="@+id/anchor"
+        app:layout_constraintTop_toBottomOf="@+id/charts_switch" />
+
+    <TextView
+        android:id="@+id/bar_description"
+        style="@style/DescriptionText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="72dp"
+        android:layout_marginTop="40dp"
+        android:text="From 25/01/2001 to 15/02/2002"
+        android:textSize="16sp"
+        android:visibility="gone"
+        app:layout_constraintStart_toEndOf="@+id/anchor"
+        app:layout_constraintTop_toBottomOf="@+id/charts_switch"
+        tools:ignore="HardcodedText" />
+
+    <TextView
+        android:id="@+id/bar_value_text"
+        style="@style/DescriptionText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="40dp"
+        android:layout_marginTop="15dp"
+        android:fontFamily="sans-serif"
+        android:gravity="center|center_horizontal|center_vertical"
+        android:text="Thy steps taken"
+        android:textColor="#838282"
+        android:textSize="22sp"
+        android:textStyle="bold|italic"
+        android:visibility="gone"
+        app:layout_constraintStart_toEndOf="@+id/anchor"
+        app:layout_constraintTop_toBottomOf="@+id/bar_chart"
+        tools:ignore="HardcodedText" />
+
+    <TextView
+        android:id="@+id/anchor"
+        android:layout_width="10dp"
+        android:layout_height="35dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="232dp"
+        android:text="TextView"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/eyes4"
+        tools:ignore="HardcodedText,TextSizeCheck" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
