@@ -19,7 +19,7 @@ import java.text.DateFormatSymbols
 import java.util.Calendar
 
 /**
- * History Activity -> display recorded activities desc from the more recent one,
+ * History Activity -> display recorded activities desc from the most recent one,
  * it provides two filtered searches:
  * - by Activity Type
  * - by Date

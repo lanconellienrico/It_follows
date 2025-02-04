@@ -69,7 +69,7 @@
         android:layout_marginStart="27dp"
         android:layout_marginTop="20dp"
         android:gravity="center|center_horizontal|center_vertical"
-        android:text="Histogram"
+        android:text="Bar Chart"
         app:layout_constraintStart_toEndOf="@+id/charts_switch"
         app:layout_constraintTop_toBottomOf="@+id/eyes4"
         tools:ignore="HardcodedText,TextSizeCheck" />
