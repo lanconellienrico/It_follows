@@ -216,16 +216,22 @@ class ChartsActivity: AppCompatActivity() {
             dao.deleteEveryDailySteps()
         }
         */
-        /*
+
         // populate for test **********************************************
+        /*
+        val entries = mutableMapOf<Long, Int>()
         for(i in 1L..30L) {
             val steps = Random.nextInt(500, 15000)
-            val day = (LocalDate.now(ZoneId.of("Europe/Paris")).minusDays(i).toEpochDay())
-            CoroutineScope(Dispatchers.IO).launch {
-                dao.insert(DailyStepsEntity(date = day,steps = steps))
-            }
+            val day = LocalDate.now(ZoneId.of("Europe/Paris")).minusDays(i).toEpochDay()
+            entries[day] = steps
+
         }
-        */
+       CoroutineScope(Dispatchers.IO).launch {
+           entries.forEach {
+               dao.insert(DailyStepsEntity(date = it.key, steps = it.value))
+           }
+        }
+         */
         // TEST TEST TEST TEST TEST TEST TEST TEST TEST TEST TEST TEST TEST TEST TEST TEST TEST
 
         // fetch data from Db and pass them to the barChart Maker
@@ -233,6 +239,7 @@ class ChartsActivity: AppCompatActivity() {
             val recordedDailySteps = dao.getLastNDaysDailySteps(30)
             barChartMaker(recordedDailySteps)
         }
+
     }
 
     // config. data and load them into the Chart, set the Chart and finally display it
