@@ -30,10 +30,11 @@ class ActivityController(private val model: ActivityModel, private val view: Mai
     private lateinit var currentActivity: ActivityEntity            // activity currently ongoing
 
 
-    // start a new activity, keep trace if it's a step-able activity and show Toast
+    // start a new activity, keep trace if it's a step-able activity, save it in the model and show Toast
     fun startActivity(activityType: String) {
         areStepsInvolved = (activityType == "walking" || activityType == "running")
         currentActivity = ActivityEntity(activityType = activityType)
+        model.saveCurrentActivity(activityType, currentActivity.startTime)
         view.showToast("Thou art $activityType")
     }
 
@@ -41,6 +42,7 @@ class ActivityController(private val model: ActivityModel, private val view: Mai
     fun stopActivity(dao: ActivityDao) {
         currentActivity.stopActivity(dao)
         areStepsInvolved = false
+        model.clearCurrentActivity()
         view.showToast("Art thou tired of ${currentActivity.activityType}?")
     }
 
@@ -60,10 +62,17 @@ class ActivityController(private val model: ActivityModel, private val view: Mai
         model.saveSwitchState(state)
     }
 
-    // restore previous states of Switch and dailySteps on View
+    // restore previous states of Switch and dailySteps on View, restore - if there is - the ongoing activity
     fun getStatesBack() {
         view.updateStepCountView(model.getSavedSteps())
         view.setSwitchState(model.getSwitchState())
+
+        val savedActivityType = model.getCurrentActivity().first   // savedActivity<type, startTime>
+        val savedActivityStartTime = model.getCurrentActivity().second
+        if(savedActivityType != null){
+            areStepsInvolved = (savedActivityType == "walking" || savedActivityType == "running")
+            currentActivity = ActivityEntity(activityType = savedActivityType, startTime = savedActivityStartTime)
+        }
     }
 
     // reset dailySteps-count by creating the work and assigning it to a ResetDailyStepsWorker

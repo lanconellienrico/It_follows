@@ -37,6 +37,29 @@ class ActivityModel(context: Context) {
         sharedPreferences.edit().putBoolean("startStopActivitySwitchState", state).apply()
     }
 
+    // get type and start-time of ongoing activity
+    fun getCurrentActivity(): Pair<String?, Long>{
+        val type = sharedPreferences.getString("currentActivityType", null)
+        val startTime = sharedPreferences.getLong("currentActivityStartTime", 0L)
+        return Pair(type, startTime)
+    }
+
+    // save type and start-time on ongoing activity
+    fun saveCurrentActivity(type: String, startTime: Long){
+        sharedPreferences.edit()
+            .putString("currentActivityType", type)
+            .putLong("currentActivityStartTime", startTime)
+            .apply()
+    }
+
+    // activity is over -> remove type and startTime
+    fun clearCurrentActivity(){
+        sharedPreferences.edit()
+            .remove("currentActivityType")
+            .remove("currentActivityStartTime")
+            .apply()
+    }
+
     // a new day is come: update currentDay!
     fun newDay() {
         currentDay += 1

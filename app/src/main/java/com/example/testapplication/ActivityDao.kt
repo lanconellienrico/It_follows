@@ -14,7 +14,7 @@ interface ActivityDao {
     @Insert
     suspend fun insert(activity: ActivityEntity)
 
-    @Query("SELECT * FROM Activity")
+    @Query("SELECT * FROM Activity ORDER BY stopTime DESC")
     suspend fun getActivities(): List<ActivityEntity>
 
     @Query("SELECT * FROM Activity WHERE id = :id")
@@ -37,10 +37,11 @@ interface ActivityDao {
         WHERE (startTime BETWEEN :start AND :end)
         OR (stopTime BETWEEN :start AND :end)     
         OR (startTime < :start AND stopTime > :end)
+        ORDER BY stopTime DESC
     """)
     suspend fun getActivitiesByDate(start: Long, end :Long): List<ActivityEntity>
 
-    @Query("SELECT * FROM Activity WHERE activityType = :type")
+    @Query("SELECT * FROM Activity WHERE activityType = :type ORDER BY stopTime DESC")
     suspend fun getActivitiesByType(type: String): List<ActivityEntity>
 
     @Query("""
@@ -51,6 +52,7 @@ interface ActivityDao {
             OR (startTime < :dayStart AND stopTime > :dayEnd)
         )
         AND activityType = :type
+        ORDER BY stopTime DESC
     """)
     suspend fun getActivitiesByDateAndType(dayStart: Long, dayEnd :Long, type: String): List<ActivityEntity>
 
