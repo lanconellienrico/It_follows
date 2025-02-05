@@ -175,7 +175,7 @@ class MainActivity:AppCompatActivity(), SensorEventListener {
 
         AlertDialog.Builder(this)
             .setTitle("Add unto thine daily steps")
-            .setMessage("How many thou you declare?")
+            .setMessage("How many doth thou declare?")
             .setView(inputSteps)
             .setPositiveButton("add") { _, _ ->
                 val newSteps = inputSteps.text.toString().toIntOrNull() ?: 0
