@@ -47,10 +47,11 @@ class ActivityController(private val model: ActivityModel, private val view: Mai
     }
 
     // add new steps to daily count, save the new total and update view
-    // IF CURRENT ACTIVITY IS STEP-ABLE -> add new steps to current activity
+    // IF CURRENT ACTIVITY IS STEP-ABLE -> add new steps to current activity and save on the model
     fun addNewSteps(newSteps: Int) {
         if(areStepsInvolved){
             currentActivity.steps += newSteps
+            model.saveCurrentActivitySteps(currentActivity.steps)
         }
         val totalSteps = model.getSavedSteps() + newSteps
         model.saveSteps(totalSteps)
@@ -62,7 +63,7 @@ class ActivityController(private val model: ActivityModel, private val view: Mai
         model.saveSwitchState(state)
     }
 
-    // restore previous states of Switch and dailySteps on View, restore - if there is - the ongoing activity
+    // restore previous states of Switch, Spinner and dailySteps on View, restore -if there- the ongoing activity
     fun getStatesBack() {
         view.updateStepCountView(model.getSavedSteps())
         view.setSwitchState(model.getSwitchState())
@@ -70,8 +71,13 @@ class ActivityController(private val model: ActivityModel, private val view: Mai
         val savedActivityType = model.getCurrentActivity().first   // savedActivity<type, startTime>
         val savedActivityStartTime = model.getCurrentActivity().second
         if(savedActivityType != null){
-            areStepsInvolved = (savedActivityType == "walking" || savedActivityType == "running")
             currentActivity = ActivityEntity(activityType = savedActivityType, startTime = savedActivityStartTime)
+            areStepsInvolved = (savedActivityType == "walking" || savedActivityType == "running")
+            // it the activity is step-able, retrieve previous steps
+            if(areStepsInvolved) {
+                currentActivity.steps = model.getCurrentActivitySteps()
+            }
+            view.setSpinnerActivity(savedActivityType)
         }
     }
 

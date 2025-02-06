@@ -71,7 +71,7 @@ class MainActivity:AppCompatActivity(), SensorEventListener {
 
     override fun onCreate(savedInstanceState:Bundle?){
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.default_activity_create)
+        setContentView(R.layout.main_activity)
 
         model = ActivityModel(this)                                             //Model
         controller = ActivityController(model,this)                               //Controller
@@ -165,6 +165,13 @@ class MainActivity:AppCompatActivity(), SensorEventListener {
     // set start/stop_activity-Switch State
     fun setSwitchState(state: Boolean) {
         startStopActivitySwitch.isChecked = state
+    }
+
+    // set spinner on the right type - called after restart
+    fun setSpinnerActivity(type: String) {
+        val typeIndex = resources.getStringArray(R.array.activities).indexOf(type)
+        if(typeIndex != -1)
+            activityTypeSpinner.setSelection(typeIndex)
     }
 
     // create a dialog window to add daily steps happened out of the app

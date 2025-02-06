@@ -9,7 +9,13 @@ import java.time.ZoneId
 
 /** [ MCV pattern ]
  * The ActivityModel manage the access (for both writing and reading actions)
- * to the sharedPreferences Resources, relieving the MainActivity from the task
+ * to the sharedPreferences Resources, relieving the MainActivity from the task.
+ *
+ * Here are saved:
+ * - daily step's count
+ * - start|stop_activity switch's state
+ * - type, startTime (and -if there- steps) of the ongoing activity
+ * - dailyStepsEntity date of the recording day
  */
 @RequiresApi(Build.VERSION_CODES.O)
 class ActivityModel(context: Context) {
@@ -52,12 +58,23 @@ class ActivityModel(context: Context) {
             .apply()
     }
 
-    // activity is over -> remove type and startTime
+    // activity is over -> remove type, startTime and - if there - steps
     fun clearCurrentActivity(){
         sharedPreferences.edit()
             .remove("currentActivityType")
             .remove("currentActivityStartTime")
+            .remove("currentActivitySteps")
             .apply()
+    }
+
+    // get the number of steps taken of the ongoing activity
+    fun getCurrentActivitySteps(): Int{
+        return sharedPreferences.getInt("currentActivitySteps", 0)
+    }
+
+    // steps count has changed -> update number of steps of ongoing activity
+    fun saveCurrentActivitySteps(steps: Int){
+        sharedPreferences.edit().putInt("currentActivitySteps", steps).apply()
     }
 
     // a new day is come: update currentDay!
