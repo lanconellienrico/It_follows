@@ -2,11 +2,8 @@ package com.example.testapplication
 
 import android.content.Context
 import android.os.Build
-import android.util.Log
 import androidx.annotation.RequiresApi
-import androidx.work.PeriodicWorkRequest
 import androidx.work.PeriodicWorkRequestBuilder
-import androidx.work.WorkRequest
 import java.util.Calendar
 import java.util.TimeZone
 import java.util.concurrent.TimeUnit
