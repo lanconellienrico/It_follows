@@ -4,13 +4,11 @@ import android.annotation.SuppressLint
 import android.graphics.Color
 import android.os.Build
 import android.os.Bundle
-import android.util.Log
 import android.view.View
 import android.widget.Switch
 import android.widget.TextView
 import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
-import androidx.appcompat.widget.WithHint
 import com.github.mikephil.charting.data.BarData
 import com.github.mikephil.charting.data.BarDataSet
 import com.github.mikephil.charting.data.BarEntry
@@ -18,7 +16,7 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
-import com.github.mikephil.charting.charts.BarChart;
+import com.github.mikephil.charting.charts.BarChart
 import com.github.mikephil.charting.components.XAxis
 import com.github.mikephil.charting.data.Entry
 import com.github.mikephil.charting.highlight.Highlight
@@ -216,7 +214,6 @@ class ChartsActivity: AppCompatActivity() {
             dao.deleteEveryDailySteps()
         }
         */
-
         // populate for test **********************************************
         /*
         val entries = mutableMapOf<Long, Int>()
@@ -231,7 +228,7 @@ class ChartsActivity: AppCompatActivity() {
                dao.insert(DailyStepsEntity(date = it.key, steps = it.value))
            }
         }
-         */
+        */
         // TEST TEST TEST TEST TEST TEST TEST TEST TEST TEST TEST TEST TEST TEST TEST TEST TEST
 
         // fetch data from Db and pass them to the barChart Maker
@@ -239,7 +236,6 @@ class ChartsActivity: AppCompatActivity() {
             val recordedDailySteps = dao.getLastNDaysDailySteps(30)
             barChartMaker(recordedDailySteps)
         }
-
     }
 
     // config. data and load them into the Chart, set the Chart and finally display it
@@ -304,7 +300,6 @@ class ChartsActivity: AppCompatActivity() {
                 override fun onValueSelected(e: Entry?, h: Highlight?) {
                     e?.let {
                         val steps = it.y
-                        val day = it.x
                         val infoText = "${steps.toInt()} steps taken"
                         barValueText.text = infoText
                         barValueText.visibility = View.VISIBLE
