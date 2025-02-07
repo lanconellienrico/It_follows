@@ -91,12 +91,12 @@
         style="@style/PlainText"
         android:layout_width="60dp"
         android:layout_height="34dp"
-        android:layout_marginStart="8dp"
+        android:layout_marginStart="100dp"
         android:layout_marginTop="32dp"
         android:gravity="center|center_horizontal|center_vertical"
         android:text="Start/Stop"
         android:textSize="12sp"
-        app:layout_constraintStart_toEndOf="@+id/select_activity_spinner"
+        app:layout_constraintStart_toEndOf="@+id/activity_text"
         app:layout_constraintTop_toBottomOf="@+id/view3"
         tools:ignore="HardcodedText,TextSizeCheck,TouchTargetSizeCheck" />
 

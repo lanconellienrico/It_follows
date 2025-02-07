@@ -209,8 +209,7 @@ class MainActivity:AppCompatActivity(), SensorEventListener {
 
     // ***************************************************************************************************************************
 
-
-    // PERMISSION METHODS to make sure we got the papers done ************************************************************************************************
+    // PERMISSION METHODS to make sure the papers are done ************************************************************************************************
 
     //Method to check permission demands results
     private fun checkPermissions() {

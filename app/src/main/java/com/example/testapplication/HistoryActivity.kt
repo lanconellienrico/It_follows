@@ -122,6 +122,7 @@ class HistoryActivity: AppCompatActivity() {
         }
     }
 
+    // get activities from Db by their date
     private fun getActivitiesByDate(){
         val dao = Db.getDb(this).activityEntityDao()
         val dayStart = dateConverter(year, month, day, true)
@@ -137,6 +138,7 @@ class HistoryActivity: AppCompatActivity() {
         }
     }
 
+    // get activities from Db by date and type of the activity
     private fun getActivitiesByDateAndType(type: String){
         val dao = Db.getDb(this).activityEntityDao()
         val dayStart = dateConverter(year, month, day, true)
