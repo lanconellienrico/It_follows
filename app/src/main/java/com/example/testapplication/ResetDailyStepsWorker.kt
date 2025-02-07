@@ -39,7 +39,7 @@ class ResetDailyStepsWorker(context: Context, workerParams: WorkerParameters): W
             // check if a worker for the job has already been scheduled
             val workInfo = workManager.getWorkInfosForUniqueWork(WORK).get()
             if (workInfo.isNotEmpty() && workInfo.any { it.state == WorkInfo.State.ENQUEUED || it.state == WorkInfo.State.RUNNING}) {
-                Log.d(TAG, "Worker's already active, you lazy ass")
+                Log.d(TAG, "Worker's already active, you lazy ars")
                 return
             }
 
