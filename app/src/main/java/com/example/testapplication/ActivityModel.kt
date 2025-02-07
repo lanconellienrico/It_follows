@@ -33,6 +33,30 @@ class ActivityModel(context: Context) {
         Log.d("ActivityModel", "saveSteps($steps)")
     }
 
+    // create dailyStepsEntity, Insert Entity into Db, reset count to 0, update currentDay and stepReset
+    // *** called on midnight by the ResetDailyStepsWorker ***
+    fun saveTodaySteps(context: Context){
+        // insert into Db
+        val dao = Db.getDb(context).dailyStepsEntityDao()
+        DailyStepsEntity(date = getDay(), steps = getSavedSteps()).save(dao)
+
+        // reset steps, and update stepReset and current day
+        saveSteps(0)
+        setStepReset(true)
+        newDay()
+    }
+
+    // is step's reset happened? yes -> true | no -> false
+    fun getStepReset(): Boolean{
+        return sharedPreferences.getBoolean("stepReset", false)
+    }
+
+    // stepReset is set TRUE when a reset's happened
+    // when the MainActivity View is update, then become FALSE
+    fun setStepReset(resetHasHappened: Boolean){
+        sharedPreferences.edit().putBoolean("stepReset", resetHasHappened).apply()
+    }
+
     // get the state of start/stop_activity Switch
     fun getSwitchState(): Boolean {
         return sharedPreferences.getBoolean("startStopActivitySwitchState", false)
@@ -78,11 +102,11 @@ class ActivityModel(context: Context) {
     }
 
     // a new day is come: update currentDay!
-    fun newDay() {
+    private fun newDay() {
         currentDay += 1
     }
 
-    fun getDay(): Long{
+    private fun getDay(): Long{
         return currentDay
     }
 }

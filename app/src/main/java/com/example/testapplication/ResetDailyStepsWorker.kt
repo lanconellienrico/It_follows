@@ -24,7 +24,7 @@ class ResetDailyStepsWorker(context: Context, workerParams: WorkerParameters): W
     override fun doWork(): Result {
 
         // reset daily steps count
-        ActivityModel(applicationContext).saveSteps(0)
+        ActivityModel(applicationContext).saveTodaySteps(applicationContext)
         Log.d("ResetDailyStepsWorker", "Daily Steps count successful reset. ")
         return Result.success()
     }
@@ -42,12 +42,12 @@ class ResetDailyStepsWorker(context: Context, workerParams: WorkerParameters): W
                 Log.d(TAG, "Worker's already active, you lazy ass")
                 return
             }
+
             // add the work to the queue, with .KEEP policy -> we don't want duplicate
             workManager.enqueueUniquePeriodicWork(
                 WORK, ExistingPeriodicWorkPolicy.KEEP, workRequest
             )
             Log.d(TAG, "A new $TAG has been scheduled successfully")
         }
-
     }
 }

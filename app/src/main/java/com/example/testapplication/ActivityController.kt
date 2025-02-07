@@ -3,7 +3,9 @@ package com.example.testapplication
 import android.content.Context
 import android.os.Build
 import androidx.annotation.RequiresApi
+import androidx.work.PeriodicWorkRequest
 import androidx.work.PeriodicWorkRequestBuilder
+import java.sql.Time
 import java.util.Calendar
 import java.util.TimeZone
 import java.util.concurrent.TimeUnit
@@ -78,10 +80,8 @@ class ActivityController(private val model: ActivityModel, private val view: Mai
         }
     }
 
-    // reset dailySteps-count by creating the work and assigning it to a ResetDailyStepsWorker
+    // creating the request to reset daily steps and assigning it to the ResetDailyStepsWorker
     fun scheduleDailyStepsResetWorker(context: Context) {
-        // save today steps
-        saveTodaySteps(context)
 
         // setup periodic reset work
         val rightNow = Calendar.getInstance(TimeZone.getTimeZone("Europe/Paris"))
@@ -102,15 +102,12 @@ class ActivityController(private val model: ActivityModel, private val view: Mai
 
         // schedule work
         ResetDailyStepsWorker.addUniqueWork(context, dailyStepsWorkRequest)
-    }
 
-    // create dailyStepsEntity and call save() which Insert Entity into Db
-    private fun saveTodaySteps(context: Context){
-        val dao = Db.getDb(context).dailyStepsEntityDao()
-        val todaySteps = model.getSavedSteps()
-        val date = model.getDay()
-        DailyStepsEntity(date = date, steps = todaySteps).save(dao)
-        model.newDay()
+        // TEST TEST TEST TEST TEST TEST TEST TEST TEST TEST TEST TEST TEST TEST TEST TEST TEST TEST TEST TEST TEST TEST TEST
+        /*val dailyStepsWorkRequest = PeriodicWorkRequestBuilder<ResetDailyStepsWorker>(10, TimeUnit.SECONDS)
+            .setInitialDelay(20000, TimeUnit.MILLISECONDS)
+            .build()*/
+        // TEST TEST TEST TEST TEST TEST TEST TEST TEST TEST TEST TEST TEST TEST TEST TEST TEST TEST TEST TEST TEST TEST TEST
     }
 
     // set a weekly notification for every Monday at 5:00 am

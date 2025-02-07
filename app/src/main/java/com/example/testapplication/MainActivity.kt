@@ -133,8 +133,11 @@ class MainActivity:AppCompatActivity(), SensorEventListener {
         super.onResume()
 
         //onResume retrieve saved dailySteps count
-        val previousSteps = model.getSavedSteps().toString()
-        stepCountTextView.text = previousSteps
+        val currentSteps = model.getSavedSteps().toString()
+        stepCountTextView.text = currentSteps
+
+        // check if the step count has been reset
+        checkResetStepCount()
     }
 
     // UTILITY METHODS still graphic related *****************************************************************************
@@ -195,6 +198,15 @@ class MainActivity:AppCompatActivity(), SensorEventListener {
             .create()
             .show()
     }
+
+    // if daily steps have been reset -> set count to 0 and resetStep -> FALSE
+    private fun checkResetStepCount() {
+        if(model.getStepReset()){
+            updateStepCountView(0)
+            model.setStepReset(false)
+        }
+    }
+
     // ***************************************************************************************************************************
 
 
